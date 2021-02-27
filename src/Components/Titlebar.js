@@ -4,7 +4,6 @@ import { useWeb3React } from "@web3-react/core";
 
 const Titlebar = () => {
   const web3data = useWeb3React();
-  console.log(web3data);
   return (
     <div>
       <button onClick={() => web3data.activate(Injected)}>
@@ -12,6 +11,8 @@ const Titlebar = () => {
       </button>
 
       <button onClick={() => web3data.activate(Portis)}>Activate Portis</button>
+
+      <pre>Current Web3 Data: {JSON.stringify(web3data)}</pre>
     </div>
   );
 };

@@ -6,7 +6,7 @@ const Injected = new InjectedConnector({
 });
 const Portis = new PortisConnector({
   dAppId: "3ca5aba8-016e-4e79-bcff-fadc16aa76b1",
-  networks: [1, 80001],
+  networks: [1, 5],
 });
 
 export { Injected, Portis };
