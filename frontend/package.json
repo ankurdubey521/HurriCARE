@@ -13,8 +13,10 @@
     "@web3-react/portis-connector": "^6.1.9",
     "ethers": "^5.0.31",
     "hardhat": "^2.0.10",
+    "node-geocoder": "^3.27.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-geocode": "^0.2.3",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
