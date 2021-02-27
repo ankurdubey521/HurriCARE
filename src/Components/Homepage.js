@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import getSuperfluidSdk from "../Superfluid/superfluid";
+import Titlebar from "./Titlebar";
+import getSuperfluidSdk from "../utils/superfluid";
 
 const Homepage = () => {
   const [superFluidFramerwork, setSuperFluidFramerwork] = useState(undefined);
@@ -8,7 +9,11 @@ const Homepage = () => {
     getSuperfluidSdk().then((sf) => setSuperFluidFramerwork(sf));
   }, []);
 
-  return <div>Homepage</div>;
+  return (
+    <>
+      <Titlebar /> <div>Homepage</div>
+    </>
+  );
 };
 
 export default Homepage;
