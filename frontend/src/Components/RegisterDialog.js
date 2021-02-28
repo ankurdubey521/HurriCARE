@@ -111,16 +111,12 @@ const RegisterDialog = ({ refresh }) => {
                   `Scaled Latitude: ${scaledLatitude}, Scaled Longitude: ${scaledLongitude}`
                 );
                 console.log("Sending transaction to register user...");
+                setTransactionProcessing(true);
                 const tx = await superFluidContract.registerUser(
                   scaledLatitude,
                   scaledLongitude
                 );
                 console.log(`Transaction: `, tx);
-                setTransactionProcessing(true);
-                await ethers.providers
-                  .getDefaultProvider()
-                  .getTransactionReceipt(tx.hash);
-                console.log("Transaction confirmed");
                 setTransactionProcessing(false);
                 setIsOpen(false);
                 refresh();
