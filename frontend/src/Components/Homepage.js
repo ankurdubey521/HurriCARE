@@ -6,9 +6,8 @@ import {
   startFlowFDaiX,
 } from "../utils/superfluid";
 import { useWeb3React } from "@web3-react/core";
+import { SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI } from "../constants";
 
-const DEPLOYED_CONTRACT_ADDRESS_GOERLI =
-  "0xd53fB492eD4136eCD712d2a38ed38f49470436e2";
 const Homepage = () => {
   const { account } = useWeb3React();
   const [superFluidFramerwork, setSuperFluidFramerwork] = useState(undefined);
@@ -25,26 +24,26 @@ const Homepage = () => {
   var options1 = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 0,
   };
-  
+
   function success(pos) {
     var crd = pos.coords;
-  
-    console.log('Your current position is:');
+
+    console.log("Your current position is:");
     var latitude = crd.latitude.toString();
     var longitude = crd.longitude.toString();
     console.log(`Latitude : ${latitude}`);
     console.log(`Longitude: ${longitude}`);
     // console.log(`Altitude ${crd.altitude} meters.`);
   }
-  
+
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
-  
-  const getLocation = async() =>{
-    if (navigator.geolocation){
+
+  const getLocation = async () => {
+    if (navigator.geolocation) {
       navigator.permissions
         .query({ name: "geolocation" })
         .then(function (result) {
@@ -53,7 +52,7 @@ const Homepage = () => {
             //If granted then you can directly call your function here
             navigator.geolocation.getCurrentPosition(success);
           } else if (result.state === "prompt") {
-            navigator.geolocation.getCurrentPosition(success,error,options1);
+            navigator.geolocation.getCurrentPosition(success, error, options1);
           } else if (result.state === "denied") {
             //If denied then you have to show instructions to enable location
           }
@@ -62,7 +61,7 @@ const Homepage = () => {
           };
         });
     }
-  }
+  };
   useEffect(() => {
     initializeSuperfluidData()
       .then(() => {})
@@ -71,8 +70,7 @@ const Homepage = () => {
 
   return (
     <>
-      <Titlebar /> <div>Homepage</div>
-      Current fDaiX Balance: {fDaiXBalance}
+      <Titlebar /> Current fDaiX Balance: {fDaiXBalance}
       <br />
       <input
         type="number"
@@ -84,17 +82,21 @@ const Homepage = () => {
           startFlowFDaiX(
             flowRateInput,
             account,
-            DEPLOYED_CONTRACT_ADDRESS_GOERLI,
+            SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI,
             superFluidFramerwork
           ).then(() => {});
         }}
       >
         Start Streaming money to contract
       </button>
-      <button onClick={() => { getLocation()}}> getLOx
+      <button
+        onClick={() => {
+          getLocation();
+        }}
+      >
+        {" "}
+        getLOx
       </button>
-
-     
     </>
   );
 };
