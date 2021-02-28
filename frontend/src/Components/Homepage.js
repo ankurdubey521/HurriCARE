@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Titlebar from "./Titlebar";
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import { SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI } from "../constants";
+import { SUPERFLUID_USER_MANAGER_ADDRESS } from "../constants";
 import { SUPER_FLUID_TEST_ABI } from "../Abi/SuperFluidTest";
 import RegisterDialog from "./RegisterDialog";
 import ApplyDialog from "./ApplyDialog";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 const Homepage = () => {
   const { account, library } = useWeb3React();
@@ -20,7 +20,7 @@ const Homepage = () => {
     const operation = async () => {
       const signer = library.getSigner(account);
       const superFluidContract = new ethers.Contract(
-        SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI,
+        SUPERFLUID_USER_MANAGER_ADDRESS,
         SUPER_FLUID_TEST_ABI,
         signer
       );

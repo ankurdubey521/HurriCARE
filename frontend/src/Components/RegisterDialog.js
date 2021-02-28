@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { ethers } from "ethers";
 
-import { SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI } from "../constants";
+import { SUPERFLUID_USER_MANAGER_ADDRESS } from "../constants";
 import { SUPER_FLUID_TEST_ABI } from "../Abi/SuperFluidTest";
 
 const RegisterDialog = ({ refresh }) => {
@@ -19,7 +19,7 @@ const RegisterDialog = ({ refresh }) => {
   const { account, library } = useWeb3React();
   const signer = library.getSigner(account);
   const superFluidContract = new ethers.Contract(
-    SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI,
+    SUPERFLUID_USER_MANAGER_ADDRESS,
     SUPER_FLUID_TEST_ABI,
     signer
   );
