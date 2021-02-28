@@ -3,15 +3,6 @@
  <h3 align="center"> Stay protected even in the toughest of times </h3>
  <p align="center"> A decentralized insurance platform where you pay premium based on your location, and get super-fast gauranteed relief fund when you are hit by a cyclone or a hurricane.</p>
  
-  
- ## 🚀 Technology Stack:
-  
- - **Frontend**: <img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/> 
- - **Oracles and Alarm Clock**: <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Chainlink_logo.jpg" height="40" width="120">
- - **Premium streaming**: <img src="https://raw.githubusercontent.com/superfluid-finance/protocol-monorepo/HEAD/sf-logo.png" height="25" width="100">
- - **Login**: <img src="https://i.postimg.cc/CMGdN5dV/metamask.png" height="30" width="150"><img src="https://i.postimg.cc/W4LQXNhQ/portis.png" height="30" width="90">
- - **Deployment (Mumbai testnet)**: <img src="https://i.postimg.cc/HkqVzy0d/matic2.png" height="30" width="110">
- 
  [![hurri-CARE1.png](https://i.postimg.cc/xdxBYfcp/hurri-CARE1.png)](https://postimg.cc/cK3FBN7f)
  
  ### Register and Apply for Insurance 
@@ -22,6 +13,14 @@
  
  ### Check premium payment status on SuperFluid
  [![hurri-CARE6.png](https://i.postimg.cc/nz1jMWfW/hurri-CARE6.png)](https://postimg.cc/5Y6NRn05)
+ 
+ ## 🚀 Technology Stack:
+  
+ - **Frontend**: <img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/> 
+ - **Oracles and Alarm Clock**: <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Chainlink_logo.jpg" height="40" width="120">
+ - **Premium streaming**: <img src="https://raw.githubusercontent.com/superfluid-finance/protocol-monorepo/HEAD/sf-logo.png" height="25" width="100">
+ - **Login**: <img src="https://i.postimg.cc/CMGdN5dV/metamask.png" height="30" width="150"><img src="https://i.postimg.cc/W4LQXNhQ/portis.png" height="30" width="90">
+ - **Deployment (Mumbai testnet)**: <img src="https://i.postimg.cc/HkqVzy0d/matic2.png" height="30" width="110">
  
  ## ✍️ What we Provide:
  
@@ -34,7 +33,7 @@
  - Chainlink oracles fetch the current weather conditions for each active user
  - A fixed amount in DAI is paid to the users eligible. 
  
- ## Contributing:
+ ## Run locally:
  
   - Clone the repository:
    `git clone https://github.com/ankurdubey521/learning_curve_lending_platform_ui.git`
