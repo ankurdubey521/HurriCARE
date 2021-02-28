@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import { SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI } from "../constants";
+import { SUPERFLUID_USER_MANAGER_ADDRESS } from "../constants";
 import { getPremiumRatePerSecond } from "../utils/chainlink-api-contract";
 import { getSuperfluidSdk, startFlowFDaiX } from "../utils/superfluid";
 
@@ -61,7 +61,7 @@ const ApplyDialog = ({ refresh }) => {
                 await startFlowFDaiX(
                   premiumRate,
                   account,
-                  SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI,
+                  SUPERFLUID_USER_MANAGER_ADDRESS,
                   superFluidFramework
                 );
                 setTransactionProcessing(false);
