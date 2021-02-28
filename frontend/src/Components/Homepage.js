@@ -1,102 +1,99 @@
 import React, { useState, useEffect } from "react";
 import Titlebar from "./Titlebar";
-import {
-  getSuperfluidSdk,
-  getFDaiXBalance,
-  startFlowFDaiX,
-} from "../utils/superfluid";
 import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
 import { SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI } from "../constants";
+import { SUPER_FLUID_TEST_ABI } from "../Abi/SuperFluidTest";
+import RegisterDialog from "./RegisterDialog";
+import ApplyDialog from "./ApplyDialog";
+import { Typography, Grid } from "@material-ui/core";
 
 const Homepage = () => {
-  const { account } = useWeb3React();
-  const [superFluidFramerwork, setSuperFluidFramerwork] = useState(undefined);
-  const [fDaiXBalance, setFDaiXBalance] = useState(0);
-  const [flowRateInput, setFlowRateInput] = useState(0);
+  const { account, library } = useWeb3React();
+  const [isRegistered, setIsRegistered] = useState(null);
+  const [isPayingPremiun, setIsPayingPremiun] = useState(null);
+  const [needsRefresh, setNeedsRefresh] = useState(false);
 
-  const initializeSuperfluidData = async () => {
-    // Initialize Superfluid Framwework
-    setSuperFluidFramerwork(await getSuperfluidSdk());
+  const reRenderHomePage = () => setNeedsRefresh(!needsRefresh);
 
-    // Fetch fDAIx Balance
-    setFDaiXBalance(await getFDaiXBalance(account));
-  };
-  var options1 = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
-
-  function success(pos) {
-    var crd = pos.coords;
-
-    console.log("Your current position is:");
-    var latitude = crd.latitude.toString();
-    var longitude = crd.longitude.toString();
-    console.log(`Latitude : ${latitude}`);
-    console.log(`Longitude: ${longitude}`);
-    // console.log(`Altitude ${crd.altitude} meters.`);
-  }
-
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-
-  const getLocation = async () => {
-    if (navigator.geolocation) {
-      navigator.permissions
-        .query({ name: "geolocation" })
-        .then(function (result) {
-          if (result.state === "granted") {
-            console.log(result.state);
-            //If granted then you can directly call your function here
-            navigator.geolocation.getCurrentPosition(success);
-          } else if (result.state === "prompt") {
-            navigator.geolocation.getCurrentPosition(success, error, options1);
-          } else if (result.state === "denied") {
-            //If denied then you have to show instructions to enable location
-          }
-          result.onchange = function () {
-            console.log(result.state);
-          };
-        });
-    }
-  };
   useEffect(() => {
-    initializeSuperfluidData()
+    const operation = async () => {
+      const signer = library.getSigner(account);
+      const superFluidContract = new ethers.Contract(
+        SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI,
+        SUPER_FLUID_TEST_ABI,
+        signer
+      );
+
+      // Check if address is registered
+      const registrationStatus = await superFluidContract.isAddressRegistered(
+        account
+      );
+      if (registrationStatus) {
+        console.log(`${account} is registered`);
+      } else {
+        console.log(`${account} is not registred`);
+      }
+      setIsRegistered(registrationStatus);
+
+      // Check fi user is paying premiums
+      const premiumPaymentStatus = await superFluidContract.isAddressSendingPremiums(
+        account
+      );
+      if (premiumPaymentStatus) {
+        console.log(`${account} is paying premiums`);
+      } else {
+        console.log(`${account} is not paying premiums`);
+      }
+      setIsPayingPremiun(premiumPaymentStatus);
+    };
+    operation()
       .then(() => {})
       .catch(console.log);
-  }, [account]);
+  }, [account, isRegistered, library, needsRefresh]);
 
   return (
     <>
-      <Titlebar /> Current fDaiX Balance: {fDaiXBalance}
-      <br />
-      <input
-        type="number"
-        value={flowRateInput}
-        onChange={(event) => setFlowRateInput(event.target.value)}
-      />
-      <button
-        onClick={() => {
-          startFlowFDaiX(
-            flowRateInput,
-            account,
-            SUPERFLUID_USER_MANAGER_ADDRESS_GOERLI,
-            superFluidFramerwork
-          ).then(() => {});
+      <Titlebar />
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
-        Start Streaming money to contract
-      </button>
-      <button
-        onClick={() => {
-          getLocation();
+        {!isRegistered && (
+          <Typography variant="h2">
+            A Hurricane can strike at any moment. Register today to get insured
+            against damages that may uproot your life.
+          </Typography>
+        )}
+        {isRegistered && !isPayingPremiun && (
+          <Typography variant="h2">
+            Once you start paying the premiums you'll automatically recieve a
+            payout if you're hit by a hurricane.
+          </Typography>
+        )}
+        {isPayingPremiun && (
+          <Typography variant="h2">You are now insured!</Typography>
+        )}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "70%",
+          transform: "translate(-50%, -50%)",
         }}
       >
-        {" "}
-        getLOx
-      </button>
+        {account &&
+          (isRegistered ? (
+            !isPayingPremiun && <ApplyDialog refresh={reRenderHomePage} />
+          ) : (
+            <RegisterDialog refresh={reRenderHomePage} />
+          ))}{" "}
+      </div>
     </>
   );
 };

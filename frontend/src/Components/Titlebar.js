@@ -1,7 +1,7 @@
 import React from "react";
 import { Portis, Injected } from "../utils/web3-connectors";
 import { useWeb3React } from "@web3-react/core";
-import { AppBar, Grid, Typography, Paper } from "@material-ui/core";
+import { AppBar, Grid, Typography } from "@material-ui/core";
 import { MetaMaskButton, Button, EthAddress } from "rimble-ui";
 
 const styles = {
@@ -18,7 +18,7 @@ const Titlebar = () => {
   return (
     <AppBar position="static" style={styles.appbar}>
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Typography variant="h4" color="textPrimary">
             HURRICANE INSURANCE
           </Typography>
@@ -26,7 +26,8 @@ const Titlebar = () => {
         <Grid
           container
           item
-          xs={6}
+          xs={12}
+          sm={6}
           spacing={2}
           alignItems="center"
           justify="flex-end"
@@ -41,7 +42,7 @@ const Titlebar = () => {
               Metamask
             </MetaMaskButton>
           </Grid>
-          <Grid item fullWidth>
+          <Grid item>
             <Button
               mainColor="#805ad5"
               onClick={() => activate(Portis)}
