@@ -8,7 +8,6 @@ const App = () => {
     <Web3ReactProvider
       getLibrary={(provider, connector) => new Web3Provider(provider)}
     >
-      <h1>learning_curve: Hurricane Platform</h1>
       <Homepage />
     </Web3ReactProvider>
   );
