@@ -36,10 +36,12 @@
  ## Run locally:
  
   - Clone the repository:
-   `git clone https://github.com/ankurdubey521/learning_curve_lending_platform_ui.git`
+   `git clone https://github.com/ankurdubey521/HurriCARE`
   - `cd frontend`
   - Install dependencies:
    `yarn install`
   - Run the React app:
    `npm start`
  
+ ## Demo (YouTube)
+ [![hurriCARE](https://img.youtube.com/vi/KZ0pRlZStT8/0.jpg)](https://www.youtube.com/watch?v=KZ0pRlZStT8)
