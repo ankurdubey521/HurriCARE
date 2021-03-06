@@ -1,7 +1,7 @@
 <p align="center">
  <h1 align="center"> 🌪 HurriCARE 🌪 </h1>
  <h3 align="center"> Stay protected even in the toughest of times </h3>
- <p align="center"> A decentralized insurance platform where you pay premium based on your location, and get super-fast gauranteed relief fund when you are hit by a cyclone or a hurricane.</p>
+ <p align="center"> A decentralized insurance platform where you pay premium based on your location, and get super-fast guaranteed relief fund when you are hit by a cyclone or a hurricane.</p>
  
  [![hurri-CARE1.png](https://i.postimg.cc/xdxBYfcp/hurri-CARE1.png)](https://postimg.cc/cK3FBN7f)
  
